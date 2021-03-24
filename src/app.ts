@@ -1,9 +1,10 @@
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
-const morgan = require("morgan");
+import express from 'express'
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import api from "./api";
 
-const app = express();
+const app: express.Application = express();
 
 app.set("trust proxy", "loopback");
 
@@ -44,8 +45,6 @@ app.use(
 
 app.use(express.json());
 
-const api = require("./src/api");
-
 app.use(api);
 
-module.exports = app;
+export = app;

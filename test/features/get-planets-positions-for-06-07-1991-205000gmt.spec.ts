@@ -1,5 +1,5 @@
-const request = require("supertest");
-const app = require("./../../app");
+import request from "supertest";
+import app from "./../../src/app";
 
 describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   let response;
@@ -16,6 +16,7 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   });
 
   const expectAstro = (astroName, sign, position) => {
+    console.log(response)
     expect(response.body.data.astros[astroName]).not.toBeUndefined();
     expect(response.body.data.astros[astroName].position.degrees).toBe(
       position.degrees

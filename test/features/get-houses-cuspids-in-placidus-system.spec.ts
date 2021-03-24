@@ -1,5 +1,5 @@
-const request = require("supertest");
-const app = require("./../../app");
+import request from "supertest";
+import app from "./../../src/app";
 
 describe("Get placidus houses system cuspids for 1991-07-06T16:50:00-04:00", () => {
   let response;

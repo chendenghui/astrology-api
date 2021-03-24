@@ -12,7 +12,8 @@ module.exports = {
     "no-bitwise": ["error", { allow: ["|"] }],
     "max-len": 0,
     quotes: [2, "double", "avoid-escape"],
-    "arrow-body-style": 0
+    "arrow-body-style": 0,
+    "no-console": 0,
   },
   settings: {
     "import/resolver": {

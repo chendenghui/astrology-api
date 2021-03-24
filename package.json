@@ -2,10 +2,14 @@
   "name": "astrology_api",
   "version": "1.0.0",
   "description": "Api para el calculos astrologicos",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon --watch src src/index.js",
+    "build": "rimraf dist && tsc",
+    "postbuild": "node ./postBuild.js",
+    "preserve": "npm run build",
+    "serve": "NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -r source-map-support/register -q dist/src/server.js\"",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node -r source-map-support/register dist/src/server.js",
     "test": "ENVIRONMENT=test jest",
     "coveralls": "ENVIRONMENT=test jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/eslint --fix src"
@@ -16,22 +20,33 @@
   "author": "ryuphi",
   "license": "MIT",
   "devDependencies": {
-    "@types/express": "^4.17.6",
-    "@types/jest": "^25.2.1",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.14.35",
+    "concurrently": "^6.0.0",
     "coveralls": "^3.0.9",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.1.0",
-    "nodemon": "^2.0.4",
-    "supertest": "^4.0.2"
+    "jest": "^25.5.4",
+    "nodemon": "^2.0.7",
+    "supertest": "^4.0.2",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "cpy": "^8.1.2",
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
     "helmet": "^3.21.3",
     "morgan": "^1.9.1",
+    "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
     "swisseph": "^0.5.15"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }

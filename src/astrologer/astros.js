@@ -49,7 +49,6 @@ const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDa
 const position = (astrologyObject, moment) => {
   const julianDayUT = utcToJulianUt(moment);
   const astro = getPositionOfAstro(astrologyObject, julianDayUT);
-
   const dms = degreesToDms(astro.longitude);
   return {
     position: {

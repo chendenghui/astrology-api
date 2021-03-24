@@ -24,4 +24,4 @@ COPY --chown=node:node --from=builder /home/node/app .
 
 EXPOSE 3000
 
-CMD [ "node", "index" ]
+CMD [ "node", "dist/server.js" ]

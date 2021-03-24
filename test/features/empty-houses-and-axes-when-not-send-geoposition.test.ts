@@ -1,5 +1,5 @@
-const request = require("supertest");
-const app = require("./../../app");
+import request from "supertest";
+import app from "./../../src/app";
 
 describe("Get houses empty and axes as undefined when geolocation is not send", () => {
   let response;
