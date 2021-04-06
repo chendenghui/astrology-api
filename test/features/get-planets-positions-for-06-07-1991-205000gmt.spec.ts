@@ -16,7 +16,6 @@ describe("Get the planets position for 1991-07-06T16:50:00-04:00", () => {
   });
 
   const expectAstro = (astroName, sign, position) => {
-    console.log(response)
     expect(response.body.data.astros[astroName]).not.toBeUndefined();
     expect(response.body.data.astros[astroName].position.degrees).toBe(
       position.degrees

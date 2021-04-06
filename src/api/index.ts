@@ -14,14 +14,6 @@ router.get("/horoscope", async (req, res) => {
   const planets = astrologer.planets(date);
   const aspects = astrologer.aspects(planets);
 
-  console.info(req.query);
-  console.log(planets)
-
-  console.log( {
-    latitude: parseFloat(latitude as string),
-    longitude: parseFloat(longitude as string),
-  })
-
   const houses = astrologer.houses(date, {
     latitude: parseFloat(latitude as string),
     longitude: parseFloat(longitude as string),
