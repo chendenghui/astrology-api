@@ -1,10 +1,10 @@
-const swisseph = require("swisseph");
+import swisseph from "swisseph";
 
 swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-const { utcToJulianUt, zodiacSign, degreesToDms } = require("./utils");
+import {degreesToDms, utcToJulianUt, zodiacSign} from "./utils";
 
-const PLANETS = {
+export const PLANETS = {
   sun: swisseph.SE_SUN,
   moon: swisseph.SE_MOON,
   mercury: swisseph.SE_MERCURY,
@@ -23,7 +23,7 @@ const PLANETS = {
   juno: swisseph.SE_JUNO,
 };
 
-const planetsByType = {
+export const planetsByType = {
   sun: "luminary",
   moon: "luminary",
   mercury: "personal",
@@ -42,11 +42,11 @@ const planetsByType = {
   juno: "other",
 };
 
-const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
+export const FLAG = swisseph.SEFLG_SPEED | swisseph.SEFLG_SWIEPH;
 
-const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDayUT, PLANETS[astro], FLAG);
+export const getPositionOfAstro = (astro, julianDayUT) => swisseph.swe_calc_ut(julianDayUT, PLANETS[astro], FLAG);
 
-const position = (astrologyObject, moment) => {
+export const position = (astrologyObject, moment) => {
   const julianDayUT = utcToJulianUt(moment);
   const astro = getPositionOfAstro(astrologyObject, julianDayUT);
   const dms = degreesToDms(astro.longitude);
@@ -57,10 +57,4 @@ const position = (astrologyObject, moment) => {
     },
     sign: zodiacSign(astro.longitude),
   };
-};
-
-module.exports = {
-  PLANETS,
-  position,
-  planetsByType
 };

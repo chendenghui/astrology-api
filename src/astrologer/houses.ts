@@ -1,10 +1,10 @@
-const swisseph = require("swisseph");
+import swisseph from "swisseph";
 
 swisseph.swe_set_ephe_path(`${__dirname}/../../eph`);
 
-const { utcToJulianUt, degreesToDms, zodiacSign } = require("./utils");
+import {degreesToDms, utcToJulianUt, zodiacSign} from "./utils";
 
-const houses = (date, position) => {
+export const houses = (date, position) => {
   const julianDayUT = utcToJulianUt(date);
 
   const withoutGeoposition = !position.latitude || !position.longitude;
@@ -38,8 +38,4 @@ const houses = (date, position) => {
     axes,
     houses: houseCollection,
   };
-};
-
-module.exports = {
-  houses,
 };

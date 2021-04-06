@@ -1,6 +1,6 @@
-const swisseph = require("swisseph");
+import swisseph from 'swisseph'
 
-const utcToJulianUt = (utcDate) => {
+export const utcToJulianUt = (utcDate) => {
   const { julianDayUT } = swisseph.swe_utc_to_jd(
     utcDate.getUTCFullYear(),
     utcDate.getUTCMonth() + 1,
@@ -14,7 +14,7 @@ const utcToJulianUt = (utcDate) => {
   return julianDayUT;
 };
 
-const degreesToDms = (value) => {
+export const degreesToDms = (value) => {
   const { degree: degrees, min: minutes, second: seconds } = swisseph.swe_split_deg(value, swisseph.SE_SPLIT_DEG_ZODIACAL);
 
   return {
@@ -25,9 +25,9 @@ const degreesToDms = (value) => {
   };
 };
 
-const zodiacSign = (degrees) => (Math.floor(degrees / 30) % 12) + 1;
+export const zodiacSign = (degrees: number): number => (Math.floor(degrees / 30) % 12) + 1;
 
-const normalizeDegrees = (degress) => {
+export const normalizeDegrees = (degress: number): number => {
   if (degress < -180) {
     return degress + 360;
   }
@@ -36,11 +36,4 @@ const normalizeDegrees = (degress) => {
   }
 
   return degress;
-};
-
-module.exports = {
-  utcToJulianUt,
-  degreesToDms,
-  zodiacSign,
-  normalizeDegrees
 };

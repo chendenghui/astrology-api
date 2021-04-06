@@ -1,4 +1,5 @@
-const { normalizeDegrees } = require("./utils");
+import {normalizeDegrees} from "./utils";
+import {AstroCollection} from "./index";
 
 const ASPECTS = {
   0: "conjunction",
@@ -75,7 +76,7 @@ const calculateAspect = (first, second, orbs) => {
   );
 };
 
-const aspect = (first, second, orbs) => {
+export const aspect = (first, second, orbs: Object|undefined) => {
   if (orbs === undefined) {
     orbs = { ...DEFAULT_ORBS };
   }
@@ -103,7 +104,7 @@ const aspect = (first, second, orbs) => {
   };
 };
 
-const aspects = (planets) => {
+export const aspects = (planets: AstroCollection) => {
   return Object.keys(planets).reduce((acc, planetKey) => {
     if (acc[planetKey]) {
       return acc;
@@ -113,18 +114,12 @@ const aspects = (planets) => {
 
     Object.values(planets).filter((p) => p.name !== planetKey).forEach((p) => {
       if (!acc[p.name]) {
-        const aspectsFounds = aspect(planets[planetKey], p);
+        const aspectsFounds = aspect(planets[planetKey], p, undefined);
         if (aspectsFounds) {
           acc[planetKey].push(aspectsFounds);
         }
       }
     });
-
     return acc;
   }, {});
-};
-
-module.exports = {
-  aspect,
-  aspects
 };
