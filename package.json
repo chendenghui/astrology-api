@@ -8,8 +8,7 @@
     "postbuild": "node ./postBuild.js",
     "preserve": "npm run build",
     "serve": "NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -r source-map-support/register -q dist/src/server.js\"",
-    "prestart": "npm run build",
-    "start": "cross-env NODE_ENV=production node -r source-map-support/register dist/src/server.js",
+    "start": "NODE_ENV=production node -r source-map-support/register dist/src/server.js",
     "test": "ENVIRONMENT=test jest",
     "coveralls": "ENVIRONMENT=test jest --coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/eslint --fix src"
