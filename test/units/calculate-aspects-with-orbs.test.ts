@@ -1,4 +1,4 @@
-const astrologer = require("../../src/astrologer");
+import * as astrologer from "../../src/astrologer";
 
 describe("Calculate aspects between two planets applying orbs...", () => {
   const first = {
@@ -82,7 +82,8 @@ describe("Calculate aspects between two planets applying orbs...", () => {
 
     const aspect = astrologer.aspect(
       first,
-      second
+      second,
+      undefined
     );
 
     expect(aspect.name).toBe("conjunction");
