@@ -2,12 +2,14 @@ const astrologer = require("../../src/astrologer");
 
 describe("Calculate aspects between two planets applying orbs...", () => {
   const first = {
+    type: 'luminary',
     position: {
       longitude: 30
     }
   };
 
   const second = {
+    type: 'luminary',
     position: {
       longitude: 34
     }
