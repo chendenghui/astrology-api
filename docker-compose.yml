@@ -18,7 +18,7 @@ services:
     volumes:
       - .:/var/www/app
     working_dir: /var/www/app
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm install && npm run serve"
     labels:
       - traefik.http.routers.api.rule=Host(`api.localhost`)
       - traefik.http.services.api.loadbalancer.server.port=3000
